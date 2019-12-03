@@ -21,7 +21,7 @@ use \Illuminate\Support\Facades\Route;
 //Route::get('contracts', 'ContractController@index');
 //Route::get('contracts/{id}', 'ContractController@show');
 //Route::post('contracts', 'ContractController@store');
-//Route::put('contracts/{id}', 'ContractController@update');
+//Route::put('contracts/{id}', 'ContractController@update');`1
 ////Route::put('contracts/{id}', 'ContractController@delete');
 //Route::delete('contracts/{id}', 'ContractController@destroy');
 
@@ -31,4 +31,10 @@ Route::apiResource('estates', 'EstateController');
 
 Route::apiResource('lessors', 'LessorController');
 
+Route::post('contract/relations', 'ContractsEstatesLessors@store');
+Route::put('contract/relations/{id}', 'ContractsEstatesLessors@update');
+Route::get('contracts/relations{id}', 'ContractController@show');
 
+
+Route::get('report/owner/rent', 'StatisticController@getReportOwedRent');
+Route::get('report/ownership', 'StatisticController@getReportOwnProperties');

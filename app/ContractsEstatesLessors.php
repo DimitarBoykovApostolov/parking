@@ -2,14 +2,14 @@
 
 namespace App;
 
-class Lessor extends BaseModel
+class ContractsEstatesLessors extends BaseModel
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'lessors';
+    protected $table = 'contracts_estates_lessors';
 
     /**
      * The attributes that are mass assignable.
@@ -17,9 +17,9 @@ class Lessor extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'phone',
-        'pin',
+        'contract_id',
+        'estate_id',
+        'lessor_id',
+        'ownership'
     ];
 }
