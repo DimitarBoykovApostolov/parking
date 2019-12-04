@@ -6,7 +6,6 @@ use App\BaseModel;
 use App\Http\Requests\LessorRequestPost;
 use App\Http\Requests\LessorRequestPut;
 use App\Lessor;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class LessorController extends Controller
 {
@@ -33,7 +32,7 @@ class LessorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Http\Requests\LessorRequestPost $request
      * @return \Illuminate\Http\Response
      */
     public function store(LessorRequestPost $request)
@@ -44,7 +43,7 @@ class LessorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Contract $lessor
+     * @param  \App\Lessor $lessor
      * @return \Illuminate\Http\Response
      */
     public function show(Lessor $lessor)
@@ -55,7 +54,7 @@ class LessorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Contract $lessor
+     * @param  \App\Lessor $lessor
      * @return \Illuminate\Http\Response
      */
     public function edit(Lessor $lessor)
@@ -66,26 +65,13 @@ class LessorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Contract $lessor
+     * @param  \App\Http\Requests\LessorRequestPut $request
+     * @param  \App\Lessor $lessor
      * @return \Illuminate\Http\Response
      */
     public function update(LessorRequestPut $request, Lessor $lessor)
     {
-        if ($lessor->update($request->all())) {
-            $result = response($lessor);
-        } else {
-            throw new HttpResponseException(
-                response(
-                    [
-                        'error_massge' => __('Something went wrong')
-                    ],
-                    400
-                )
-            );
-        }
-
-        return $result;
+        return parent::updateModel($request, $lessor);
     }
 
     /**
@@ -96,36 +82,17 @@ class LessorController extends Controller
      */
     public function destroy(Lessor $lessor)
     {
-        if (!empty($lessor->forceDelete())) {
-            return response([
-                'success' => true,
-                'status' => 'Profile deleted successfully!'
-            ]);
-        } else {
-            return response([
-                'success' => false
-            ], 400);
-        }
+        return parent::forceDelete($lessor);
     }
 
     /**
      * Mark the specified resource as deleted from storage.
      *
-     * @param \App\Lessor $lessor
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @param Lessor $lessor
      * @throws \Exception
      */
     public function delete(Lessor $lessor)
     {
-        if (!empty($lessor->delete())) {
-            return response([
-                'success' => true,
-                'status' => 'Profile deleted successfully!'
-            ]);
-        } else {
-            return response([
-                'success' => false
-            ], 400);
-        }
+        parent::softDelete($lessor);
     }
 }

@@ -17,7 +17,7 @@ class LessorRequestPut extends BaseRequest
             'first_name' => 'string',
             'last_name' => 'string',
             'phone' => ['numeric', new PhoneNumber()],
-            'pin' => 'unique:lessors'
+            'pin' => 'numeric'
         ];
     }
 
@@ -34,6 +34,7 @@ class LessorRequestPut extends BaseRequest
             'phone.numeric' => 'first_name must be numeric',
             'phone.phone_number' => 'phone must be valid phone number format',
             'pin.unique' => 'pin must be unique',
+            'pin.numeric' => 'pin must be numeric',
         ];
     }
 }

@@ -6,7 +6,6 @@ use App\BaseModel;
 use App\Contract;
 use App\Http\Requests\ContractRequestPost;
 use App\Http\Requests\ContractRequestPut;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ContractController extends Controller
 {
@@ -33,7 +32,7 @@ class ContractController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Http\Requests\ContractRequestPost $request
      * @return \Illuminate\Http\Response
      */
     public function store(ContractRequestPost $request)
@@ -66,26 +65,13 @@ class ContractController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Http\Requests\ContractRequestPut $request
      * @param  \App\Contract $contract
      * @return \Illuminate\Http\Response
      */
     public function update(ContractRequestPut $request, Contract $contract)
     {
-        if ($contract->update($request->all())) {
-            $result = response($contract);
-        } else {
-            throw new HttpResponseException(
-                response(
-                    [
-                        'error_massge' => __('Something went wrong')
-                    ],
-                    400
-                )
-            );
-        }
-
-        return $result;
+        return parent::updateModel($request, $contract);
     }
 
     /**
@@ -96,16 +82,7 @@ class ContractController extends Controller
      */
     public function destroy(Contract $contract)
     {
-        if (!empty($contract->forceDelete())) {
-            return response([
-                'success' => true,
-                'status' => 'Profile deleted successfully!'
-            ]);
-        } else {
-            return response([
-                'success' => false
-            ], 400);
-        }
+        return parent::forceDelete($contract);
     }
 
     /**
@@ -117,16 +94,7 @@ class ContractController extends Controller
      */
     public function delete(Contract $contract)
     {
-        if (!empty($contract->delete())) {
-            return response([
-                'success' => true,
-                'status' => 'Profile deleted successfully!'
-            ]);
-        } else {
-            return response([
-                'success' => false
-            ], 400);
-        }
+        return parent::softDelete($contract);
     }
 
 }
