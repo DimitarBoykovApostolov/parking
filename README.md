@@ -9,7 +9,7 @@
 
 ## About the task. 
 
-Created architecture is based on task business logic and requirements.
+Created architecture is based on task business logic and requirements. The point is to be reusable with all available types of database drivers.
 
 Test:
 - git clone https://github.com/DimitarBoykovApostolov/parking.git
