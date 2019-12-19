@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 abstract class BaseModel extends Model
 {
@@ -16,7 +16,7 @@ abstract class BaseModel extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'id';
+    protected $primaryKey = '_id';
 
     /**
      * The attributes that should be hidden for arrays.

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLessorsTable extends Migration
+class CreateParkingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateLessorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lessors', function (Blueprint $table) {
+        Schema::create('parking', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('first_name', 100);
-            $table->string('last_name', 100);
-            $table->string('phone', 30)->nullable(true);
-            $table->unsignedInteger('pin')->unique()->index('pin');
+            $table->string('name')->index('name');
+            $table->smallInteger('capacity');
+            $table->smallInteger('available_places');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +29,6 @@ class CreateLessorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lessors');
+        Schema::dropIfExists('parking');
     }
 }

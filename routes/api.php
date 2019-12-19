@@ -13,16 +13,11 @@ use \Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('contracts', 'ContractController');
-
-Route::apiResource('estates', 'EstateController');
-
-Route::apiResource('lessors', 'LessorController');
-
-Route::put('contract/relations/{id}', 'ContractsEstatesLessors@update');
-
-Route::prefix('report/contract/')->group(function () {
-    Route::get('rent', 'ReportController@getReportOwnedRent');
-    Route::get('ownership', 'ReportController@getReportOwnProperties');
+Route::prefix('parking/')->group(function () {
+    Route::get('places/{id}', 'ParkingController@getAvailablePlaces');
+    Route::get('fee/{license_plate}', 'ParkingController@getCurrentFee');
+    Route::post('registration', 'ParkingController@registration');
+    Route::delete('unregister/{license_plate}', 'ParkingController@unregister');
 });
+
 

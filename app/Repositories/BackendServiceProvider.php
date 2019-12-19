@@ -10,8 +10,9 @@ class BackendServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'App\Repositories\ReportRepository',
-            'App\Repositories\ContractsEstatesLessorsRepository'
-        );
+            'App\Repositories\UserRepository',
+            'App\Repositories\SettingRepository',
+            'App\Repositories\ParkingRepository'
+            );
     }
 }

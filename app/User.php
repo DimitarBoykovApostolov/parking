@@ -2,13 +2,15 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends BaseModel
 {
-    use Notifiable;
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'user';
 
     /**
      * The attributes that are mass assignable.
@@ -16,9 +18,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'license_plate',
+        'parking_id',
+        'card_id',
+        'setting_id',
     ];
 
     /**
@@ -27,16 +30,22 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'updated_at',
+        'deleted_at'
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function settings(){
+        return $this->hasOne(Setting::class, '_id', 'setting_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function discount_card(){
+        return $this->hasOne(DiscountCard::class, '_id', 'card_id');
+    }
+
 }

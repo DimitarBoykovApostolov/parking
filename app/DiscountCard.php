@@ -2,14 +2,14 @@
 
 namespace App;
 
-class Estate extends BaseModel
+class DiscountCard extends BaseModel
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'estates';
+    protected $table = 'discount_card';
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +17,7 @@ class Estate extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'unique_number',
-        'area_in_acres'
+        'name',
+        'discount_percentage'
     ];
 }
