@@ -12,11 +12,14 @@
 Created architecture is based on task business logic and requirements.
 
 Test:
-- git clone https://DimitarApostolov@bitbucket.org/DimitarApostolov/technofarm.git
+- git clone https://github.com/DimitarBoykovApostolov/parking.git
 - composer install
+- run php artisan migrate
+- run php artisan db:seed
 - run php artisan serve
+- start mongodb server
 - Laravel development server started: http://127.0.0.1:8000
-- Postman use collection
+- Use postman collection (in project main directory)
 
 
 ## License
